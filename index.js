@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('Success! Your app is working.');
+  res.send(`Success! You've reached the latest version (2)!`);
 });
 
 const server = app.listen(3000, () => {
