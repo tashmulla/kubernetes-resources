@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-deployment-healthcheck
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - name: k8s-demo
+          image: natashashafqat/kubernetes-training-demo
+          ports:
+          - name: nodejs-port
+            containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: nodejs-port
+            initialDelaySeconds: 15
+            timeoutSeconds: 30
